@@ -3,7 +3,7 @@
 
 ## 🚀 Overview
 
-We adopted a **feature-based folder structure** to ensure the project remains **scalable**, **maintainable**, and **performance-optimized** as it grows. This approach organizes the code by feature, grouping related components, screens, Redux slices, services, and hooks together. 
+I adopted a **feature-based folder structure** to ensure the project remains **scalable**, **maintainable**, and **performance-optimized** as it grows. This approach organizes the code by feature, grouping related components, screens, Redux slices, services, and hooks together. 
 
 ✅ **Key Benefits:**
 - Each feature is **self-contained** and can evolve **independently**.
@@ -100,6 +100,4 @@ We adopted a **feature-based folder structure** to ensure the project remains **
 │
 └── /public                      # 🌐 Static assets
     └── favicon.ico
----
-
-#why
+```
