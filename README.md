@@ -14,6 +14,7 @@ We adopted a **feature-based folder structure** to ensure the project remains **
 
 ## 📂 Project Structure
 
+```plaintext
 /src
 │
 ├── /app                         # Next.js 13+ App Router
@@ -99,3 +100,6 @@ We adopted a **feature-based folder structure** to ensure the project remains **
 │
 └── /public                      # 🌐 Static assets
     └── favicon.ico
+---
+
+#why
