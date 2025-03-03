@@ -2,7 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { SearchResponse } from "../types";
 
-// Estado inicial tipado
+// 🔹 Estado inicial tipado
 interface SearchState {
   products: SearchResponse["items"];
   status: "idle" | "loading" | "succeeded" | "failed";
@@ -15,9 +15,9 @@ const initialState: SearchState = {
   error: null,
 };
 
-// Thunk para buscar produtos
+// 🔹 Thunk para buscar produtos no backend real
 export const fetchSearchResults = createAsyncThunk("search/fetchResults", async (query: string) => {
-  const response = await axios.get(`/api/items?q=${query}`);
+  const response = await axios.get(`http://localhost:5000/api/items?q=${query}`);
   return response.data.items;
 });
 
