@@ -1,12 +1,15 @@
-"use client"; // ✅ Agora Next.js trata como Client Component
+"use client";
 
-import { useParams } from "next/navigation";
 import ProductDetail from "../components/ProductDetail";
-import { Box } from "@mui/material";
+import { useProductDetails } from "../hooks/useProductDetails";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
-export default function ProductDetailScreen() {
-  const params = useParams();
-  const id = params.id as string;
+export default function ProductDetailScreen({ id }: { id: string }) {
+  const { product, status, error } = useProductDetails(id);
+
+  if (status === "loading") return <CircularProgress />;
+  if (status === "failed") return <Typography color="error">{error}</Typography>;
+  if (!product) return <Typography>Nenhum produto encontrado.</Typography>;
 
   return (
     <Box sx={{ padding: "20px", maxWidth: "1200px", margin: "auto" }}>

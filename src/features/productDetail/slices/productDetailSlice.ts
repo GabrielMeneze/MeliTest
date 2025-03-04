@@ -15,10 +15,20 @@ const initialState: ProductDetailState = {
 };
 
 // 🔹 Thunk para buscar detalhes do produto diretamente no slice
-export const getProductDetail = createAsyncThunk("productDetail/fetch", async (id: string) => {
-  const response = await axios.get(`http://localhost:5000/api/items/${id}`);
-  return response.data.item; // 🔹 Apenas a parte relevante da resposta
-});
+export const getProductDetail = createAsyncThunk(
+  "productDetail/fetch",
+  async (id: string, { getState }) => {
+    const state = getState() as { productDetail: ProductDetailState };
+
+    // 🔹 Evita nova requisição se já temos o produto carregado
+    if (state.productDetail.product?.id === id) {
+      return state.productDetail.product;
+    }
+
+    const response = await axios.get(`http://localhost:5000/api/items/${id}`);
+    return response.data.item;
+  }
+);
 
 const productDetailSlice = createSlice({
   name: "productDetail",
@@ -27,7 +37,9 @@ const productDetailSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getProductDetail.pending, (state) => {
-        state.status = "loading";
+        if (state.status === "idle") {
+          state.status = "loading";
+        }
       })
       .addCase(getProductDetail.fulfilled, (state, action) => {
         state.status = "succeeded";
