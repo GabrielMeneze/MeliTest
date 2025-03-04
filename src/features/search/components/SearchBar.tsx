@@ -1,5 +1,3 @@
-"use client"; // 🔹 Define que este é um Client Component
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { TextField, InputAdornment, Box } from "@mui/material";
@@ -14,7 +12,7 @@ export default function SearchBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      router.push(`/items?search=${searchTerm}`);
+      router.push(`/items?search=${encodeURIComponent(searchTerm)}`);
     }
   };
 

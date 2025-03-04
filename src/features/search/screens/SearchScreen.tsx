@@ -1,34 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchResults } from "../slices/searchSlice";
-import { RootState, AppDispatch } from "../../../store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 import { Box, Typography, CircularProgress, Grid, Card, CardMedia, CardContent } from "@mui/material";
 import Link from "next/link";
 
 export default function SearchScreen() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("search");
+  const { products, categories, status, error } = useSelector((state: RootState) => state.search);
 
-  const dispatch = useDispatch<AppDispatch>();
-  const { products, status, error } = useSelector((state: RootState) => state.search);
-
-  useEffect(() => {
-    if (query) {
-      dispatch(fetchSearchResults(query));
-    }
-  }, [query, dispatch]);
+  if (status === "loading") return <CircularProgress />;
+  if (status === "failed") return <Typography color="error">{error}</Typography>;
+  if (products.length === 0) return <Typography>Nenhum produto encontrado.</Typography>;
 
   return (
     <Box sx={{ padding: "20px" }}>
-      <Typography variant="h5">
-        Resultados para: <strong>{query}</strong>
-      </Typography>
+      <Typography variant="h5">Resultados da busca</Typography>
 
-      {status === "loading" && <CircularProgress />}
-      {status === "failed" && <Typography color="error">{error}</Typography>}
+      {categories.length > 0 && (
+        <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
+          Categorias: {categories.join(" > ")}
+        </Typography>
+      )}
 
       <Grid container spacing={2} sx={{ marginTop: 2 }}>
         {products.map((product) => (
