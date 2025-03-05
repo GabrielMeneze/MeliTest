@@ -12,7 +12,7 @@ export const useProductDetails = (id: string) => {
     if (id && status === "idle") {
       dispatch(getProductDetail(id));
     }
-  }, [id, status, dispatch]); // ✅ Adicionamos status para evitar chamadas repetidas
+  }, [id, status, dispatch]); 
 
   return { product, status, error };
 };

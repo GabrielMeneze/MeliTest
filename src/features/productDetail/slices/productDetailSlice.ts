@@ -14,13 +14,13 @@ const initialState: ProductDetailState = {
   error: null,
 };
 
-// 🔹 Thunk para buscar detalhes do produto diretamente no slice
+//  Thunk para buscar detalhes do produto diretamente no slice
 export const getProductDetail = createAsyncThunk(
   "productDetail/fetch",
   async (id: string, { getState }) => {
     const state = getState() as { productDetail: ProductDetailState };
 
-    // 🔹 Evita nova requisição se já temos o produto carregado
+    //  Evita nova requisição se já temos o produto carregado
     if (state.productDetail.product?.id === id) {
       return state.productDetail.product;
     }

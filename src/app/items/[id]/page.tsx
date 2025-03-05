@@ -5,7 +5,7 @@ import ProductDetailScreen from "@/features/productDetail/screens/ProductDetailS
 import { Box } from "@mui/material";
 
 export default function ProductDetailPage() {
-  const { id } = useParams(); // Captura o ID da URL
+  const { id } = useParams(); 
 
   if (!id || typeof id !== "string") {
     return <Box sx={{ textAlign: "center", padding: "20px" }}>Produto não encontrado.</Box>;

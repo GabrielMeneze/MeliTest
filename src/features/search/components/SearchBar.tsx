@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { TextField, InputAdornment, Box, List, ListItem, CircularProgress, Paper } from "@mui/material";
+import { TextField, InputAdornment, Box, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import logo from "/public/logos/logomercadoLivre.png";
@@ -10,18 +10,12 @@ import { useDebouncedValue } from "../hooks/useDebouncedSearch";
 
 export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [suggestions, setSuggestions] = useState<{ id: string; title: string }[]>([]);
     const [loading, setLoading] = useState(false);
-    const debouncedSearch = useDebouncedValue(searchTerm, 1500); // 🔹 Espera 1.5s sem digitar antes de buscar
+    const debouncedSearch = useDebouncedValue(searchTerm, 1500); 
     const router = useRouter();
 
     useEffect(() => {
         try {
-            if (!debouncedSearch.trim()) {
-                setSuggestions([]);
-                return;
-            }
-    
             setLoading(true);
             if (searchTerm.trim()) {
                 router.push(`/items?search=${encodeURIComponent(searchTerm)}`);
