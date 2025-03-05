@@ -34,8 +34,7 @@ I adopted a **feature-based folder structure** to ensure the project remains **s
 │   │   │   └── searchService.ts
 │   │   ├── slices/              # Redux slices for search state
 │   │   │   └── searchSlice.ts
-│   │   ├── types.ts             # Data models (interfaces, types)
-│   │   └── index.ts             # Barrel export for search feature
+│   │   └── types.ts             # Data models (interfaces, types)
 │
 │   ├── /productDetail           # 🛒 Product detail feature
 │   │   ├── screens/             # Product detail screen
@@ -49,8 +48,7 @@ I adopted a **feature-based folder structure** to ensure the project remains **s
 │   │   │   └── productService.ts
 │   │   ├── slices/              # Redux slice for product detail state
 │   │   │   └── productDetailSlice.ts
-│   │   ├── types.ts             # Product detail interfaces
-│   │   └── index.ts             # Barrel export for productDetail
+│   │   └── types.ts             # Product detail interfaces
 │
 │   └── /breadcrumb              # 🔗 Breadcrumb navigation
 │       ├── components/
