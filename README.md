@@ -52,7 +52,7 @@ I adopted a **feature-based folder structure** to ensure the project remains **s
 │   │   ├── types.ts             # Product detail interfaces
 │   │   └── index.ts             # Barrel export for productDetail
 │
-│   └── /breadcrumb              # 🔗 Breadcrumb navigation (Optional UX feature)
+│   └── /breadcrumb              # 🔗 Breadcrumb navigation
 │       ├── components/
 │       │   └── Breadcrumbs.tsx
 │       ├── hooks/
