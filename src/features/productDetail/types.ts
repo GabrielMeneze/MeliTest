@@ -1,4 +1,4 @@
-export interface ProductDetail {
+export interface ProductDetailType {
     id: string;
     title: string;
     price: {
@@ -18,6 +18,6 @@ export interface ProductDetail {
       name: string;
       lastname: string;
     };
-    item: ProductDetail;
+    item: ProductDetailType;
   }
   

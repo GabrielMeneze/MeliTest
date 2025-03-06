@@ -1,16 +1,14 @@
 "use client";
 
 import { Box, Typography, CircularProgress, Button, Divider } from "@mui/material";
-import { useProductDetails } from "../hooks/useProductDetails";
 import Image from "next/image";
+import { ProductDetailType } from "../types";
 
-export default function ProductDetail({ id }: { id: string }) {
-  const { product, status, error } = useProductDetails(id);
+interface ProductDetailProps {
+  product: ProductDetailType;
+}
 
-  if (status === "loading") return <CircularProgress />;
-  if (status === "failed") return <Typography color="error">{error}</Typography>;
-  if (!product) return <Typography>Nenhum produto encontrado.</Typography>;
-
+export default function ProductDetail({ product }: ProductDetailProps) {
   return (
     <Box sx={{ padding: "20px", display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4 }}>
       <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
