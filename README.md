@@ -52,7 +52,7 @@ O swagger pode ser acessado em `http://localhost:5000/api-docs/`.
 - 
 ---
 
-## 📂 Project Structure(essa foi a estrutura inicial desenhada para o projeto. Porém não foi possível implementá-la por inteiro)
+## 📂 Project Structure (essa foi a estrutura inicial desenhada para o projeto. Porém não foi possível implementá-la por inteiro)
 
 ```
 /src
