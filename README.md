@@ -1,101 +1,141 @@
+# 📌 Documentação do Projeto - My Mercado Livre
 
-# 📁 Project Structure and Architecture
+## 📖 Visão Geral
+Este projeto é uma aplicação front-end desenvolvida em **Next.js** para consumir a API do Mercado Livre e exibir produtos com funcionalidades de busca e detalhes do item.
 
-## 🚀 Overview
+## 🚀 Tecnologias Utilizadas
+- **Next.js** 15
+- **React** 19
+- **TypeScript**
+- **Redux Toolkit** (para gerenciamento de estado)
+- **Material-UI** (para componentes visuais)
+- **Axios** (para requisições HTTP)
+- **Jest & Testing Library** (para testes)
 
-I adopted a **feature-based folder structure** to ensure the project remains **scalable**, **maintainable**, and **performance-optimized** as it grows. This approach organizes the code by feature, grouping related components, screens, Redux slices, services, and hooks together. 
+## 📂 Estrutura do Projeto
+O projeto segue uma estrutura modularizada dentro do diretório **`features`**, separando busca, detalhes de produto e navegação breadcrumb. A arquitetura facilita escalabilidade e manutenção do código.
 
-✅ **Key Benefits:**
-- Each feature is **self-contained** and can evolve **independently**.
-- Minimizes unintended side effects in other parts of the application.
-- Enhances scalability and maintainability.
+## 🔧 Configuração e Execução
 
+### 1️⃣ Clonar o Repositório
+```sh
+  git clone https://github.com/GabrielMeneze/MeliTest
+```
+
+### 2️⃣ Instalar Dependências
+```sh
+  npm install
+```
+
+### 3️⃣ Rodar o Projeto
+```sh
+  npm run dev
+```
+O projeto será iniciado em `http://localhost:3000/`.
+
+## 🔗 Configuração do Backend
+Este projeto depende de um backend que consome a API do Mercado Livre.
+Para configurar, clone o backend e siga as instruções:
+```sh
+  git clone https://github.com/GabrielMeneze/MeliBack.git
+  npm install
+  npm run dev
+```
+O backend será iniciado em `http://localhost:5000/`.
+O swagger pode ser acessado em `http://localhost:5000/api-docs/`.
+
+## 🛠 Funcionalidades Principais
+- **Barra de pesquisa** (usuário pode buscar produtos)
+- **Exibição de resultados** com categorias e preços
+- **Detalhes do produto** com preço, descrição e imagem
+- **Redirecionamento entre páginas** via Next.js
+- 
 ---
 
 ## 📂 Project Structure
 
-```plaintext
+```
 /src
 │
-├── /app                         # Next.js 13+ App Router
-│   ├── layout.tsx               # Global layout (header, footer, theme)
-│   └── page.tsx                 # Root search page ("/")
+├── /app                         # Diretório principal do App Router do Next.js 13+
+│   ├── layout.tsx               # Layout global (inclui cabeçalho, rodapé e tema)
+│   └── page.tsx                 # Página inicial da aplicação ("/")
 │
-├── /features                    # 💡 Self-contained features
-│   ├── /search                  # 🔍 Search feature
-│   │   ├── screens/             # Search-specific screens
-│   │   │   └── SearchScreen.tsx # Main search screen
-│   │   ├── components/          # Search-specific UI components
-│   │   │   ├── SearchBar.tsx
-│   │   │   └── SearchResultsList.tsx
-│   │   ├── hooks/               # Search-related custom hooks
-│   │   │   └── useDebouncedSearch.ts
-│   │   ├── services/            # API service for search
-│   │   │   └── searchService.ts
-│   │   ├── slices/              # Redux slices for search state
-│   │   │   └── searchSlice.ts
-│   │   └── types.ts             # Data models (interfaces, types)
+├── /features                    # Conjunto de funcionalidades independentes do sistema
+│   ├── /search                  # Funcionalidade de busca 🔍
+│   │   ├── screens/             # Telas relacionadas à busca
+│   │   │   └── SearchScreen.tsx # Tela principal da busca
+│   │   ├── components/          # Componentes específicos da busca
+│   │   │   ├── SearchBar.tsx    # Barra de pesquisa
+│   │   │   └── SearchResultsList.tsx # Lista de resultados da pesquisa
+│   │   ├── hooks/               # Hooks personalizados para busca
+│   │   │   └── useDebouncedSearch.ts # Hook para busca com debounce
+│   │   ├── services/            # Serviços de API para busca
+│   │   │   └── searchService.ts # Serviço que faz requisições relacionadas à busca
+│   │   ├── slices/              # Gerenciamento de estado da busca com Redux
+│   │   │   └── searchSlice.ts   # Slice do Redux para armazenar o estado da busca
+│   │   └── types.ts             # Modelos de dados e tipos relacionados à busca
 │
-│   ├── /productDetail           # 🛒 Product detail feature
-│   │   ├── screens/             # Product detail screen
-│   │   │   └── ProductDetailScreen.tsx
-│   │   ├── components/          # Product detail UI components
-│   │   │   ├── ProductDetail.tsx
-│   │   │   └── ProductImage.tsx
-│   │   ├── hooks/               # Custom hooks for product detail
-│   │   │   └── useProductDetails.ts
-│   │   ├── services/            # API service for product details
-│   │   │   └── productService.ts
-│   │   ├── slices/              # Redux slice for product detail state
-│   │   │   └── productDetailSlice.ts
-│   │   └── types.ts             # Product detail interfaces
+│   ├── /productDetail           # Funcionalidade de detalhes do produto 🛒
+│   │   ├── screens/             # Tela de detalhes do produto
+│   │   │   └── ProductDetailScreen.tsx # Tela principal dos detalhes do produto
+│   │   ├── components/          # Componentes específicos dos detalhes do produto
+│   │   │   ├── ProductDetail.tsx # Informações do produto
+│   │   │   └── ProductImage.tsx  # Componente de imagem do produto
+│   │   ├── hooks/               # Hooks personalizados para detalhes do produto
+│   │   │   └── useProductDetails.ts # Hook para obter detalhes do produto
+│   │   ├── services/            # Serviços de API para detalhes do produto
+│   │   │   └── productService.ts # Serviço que obtém informações do produto
+│   │   ├── slices/              # Gerenciamento de estado dos detalhes do produto
+│   │   │   └── productDetailSlice.ts # Redux slice para armazenar o estado do produto
+│   │   └── types.ts             # Modelos e interfaces para detalhes do produto
 │
-│   └── /breadcrumb              # 🔗 Breadcrumb navigation
-│       ├── components/
-│       │   └── Breadcrumbs.tsx
-│       ├── hooks/
-│       │   └── useBreadcrumbs.ts
-│       ├── slices/
-│       │   └── breadcrumbSlice.ts
-│       └── index.ts
+│   └── /breadcrumb              # Funcionalidade de navegação breadcrumb 🔗
+│       ├── components/          # Componentes relacionados ao breadcrumb
+│       │   └── Breadcrumbs.tsx  # Componente de navegação breadcrumb
+│       ├── hooks/               # Hooks personalizados para breadcrumb
+│       │   └── useBreadcrumbs.ts # Hook para manipular breadcrumbs dinamicamente
+│       ├── slices/              # Gerenciamento de estado do breadcrumb com Redux
+│       │   └── breadcrumbSlice.ts # Slice do Redux para armazenar breadcrumbs
+│       └── index.ts             # Arquivo de exportação para facilitar importações
 │
-├── /components                  # 🧩 Global reusable UI components
-│   ├── Header.tsx
-│   ├── Footer.tsx
-│   ├── Loader.tsx
-│   ├── ErrorBoundary.tsx
-│   └── Pagination.tsx
+├── /components                  # Componentes reutilizáveis de UI (globais) 🧩
+│   ├── Header.tsx               # Cabeçalho do site
+│   ├── Footer.tsx               # Rodapé do site
+│   ├── Loader.tsx               # Indicador de carregamento
+│   ├── ErrorBoundary.tsx        # Componente para capturar e exibir erros
+│   └── Pagination.tsx           # Componente de paginação
 │
-├── /layouts                     # 📐 Shared layouts
-│   ├── MainLayout.tsx           # Main layout for pages
-│   └── ProductLayout.tsx        # Product-specific layout
+├── /layouts                     # Layouts compartilhados 📐
+│   ├── MainLayout.tsx           # Layout principal utilizado nas páginas
+│   └── ProductLayout.tsx        # Layout específico para páginas de produto
 │
-├── /services                    # 🌊 Shared API configurations
-│   ├── axiosConfig.ts           # Axios global instance/config
-│   └── apiRoutes.ts             # Centralized API endpoint definitions
+├── /services                    # Configurações e chamadas de API compartilhadas 🌊
+│   ├── axiosConfig.ts           # Instância global e configuração do Axios
+│   └── apiRoutes.ts             # Definição centralizada dos endpoints da API
 │
-├── /store                       # 🏪 Redux store and typed hooks
-│   ├── store.ts                 # Redux store configuration
-│   ├── rootReducer.ts           # Combine all slices
-│   └── hooks.ts                 # useAppDispatch/useAppSelector (typed)
+├── /store                       # Configuração do Redux e hooks tipados 🏪
+│   ├── store.ts                 # Configuração da store do Redux
+│   ├── rootReducer.ts           # Combinação de todos os slices do Redux
+│   └── hooks.ts                 # Hooks tipados useAppDispatch e useAppSelector
 │
-├── /hooks                       # 🪝 Global custom hooks
-│   └── useSSR.ts                # Detect SSR vs. client rendering
+├── /hooks                       # Hooks personalizados globais 🪝
+│   └── useSSR.ts                # Hook para detectar se o código está rodando no servidor ou cliente
 │
-├── /styles                      # 🎨 Theming and global styles
-│   ├── theme.ts                 # MUI custom theme
-│   ├── global.css
-│   └── darkTheme.ts             # Optional dark mode theme
+├── /styles                      # Estilos globais e temas 🎨
+│   ├── theme.ts                 # Tema customizado do Material UI (MUI)
+│   ├── global.css               # Estilos globais do projeto
+│   └── darkTheme.ts             # Configuração para tema escuro (opcional)
 │
-├── /utils                       # 🔧 Utility functions/helpers
-│   ├── formatPrice.ts
-│   └── debounce.ts
+├── /utils                       # Funções utilitárias 🔧
+│   ├── formatPrice.ts           # Função para formatar preços
+│   └── debounce.ts              # Função para debounce (evitar múltiplas chamadas seguidas)
 │
-├── /tests                       # 🧪 Testing structure
-│   ├── /unit
-│   ├── /integration
-│   └── /mocks
+├── /tests                       # Estrutura de testes 🧪
+│   ├── /unit                    # Testes unitários
+│   ├── /integration             # Testes de integração
+│   └── /mocks                   # Mocks para testes
 │
-└── /public                      # 🌐 Static assets
-    └── favicon.ico
+└── /public                      # Arquivos estáticos 🌐
+    └── favicon.ico              # Ícone da aba do navegador
 ```
